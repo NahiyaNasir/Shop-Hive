@@ -1,18 +1,29 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../Routs/AuthProvider";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { logOut, user } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      // eslint-disable-next-line no-unused-vars
+      .then((result) => {
+        // console.log(result.user);
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <nav className="relative bg-white shadow dark:bg-gray-800">
       <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
         <div className="flex items-center justify-between">
           <a href="#">
-            <img
+            {/* <img
               className="w-auto h-6 sm:h-7"
               src="https://merakiui.com/images/full-logo.svg"
               alt="Logo"
-            />
+            /> */}
+            <h1 className="font-xl font-bold"> Shop Hive</h1>
           </a>
 
           {/* Mobile menu button */}
@@ -76,27 +87,32 @@ const NavBar = () => {
               Home
             </NavLink>
 
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive
-                  ? "flex items-center gap-x-3 py-2 px-2.5 bg-gray-700 text-sm text-white rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-600"
-                  : "w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-400 rounded-lg hover:bg-gray-800 hover:text-white-300 focus:outline-none focus:ring-1 focus:ring-gray-600"
-              }
-            >
-          Login
-            </NavLink>
-
-            <NavLink
-              to="/register"
-              className={({ isActive }) =>
-                isActive
-                  ? "flex items-center gap-x-3 py-2 px-2.5 bg-gray-700 text-sm text-white rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-600"
-                  : "w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-400 rounded-lg hover:bg-gray-800 hover:text-white-300 focus:outline-none focus:ring-1 focus:ring-gray-600"
-              }
-            >
-            Register
-            </NavLink>
+            {
+         
+                user? <><button   className="w-full max-w-52 mx-auto flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-red-500 rounded-lg hover:bg-gray-800 hover:text-white-300 focus:outline-none focus:ring-1 focus:ring-gray-600"        onClick={handleLogOut}>Log Out</button></>:
+                <>
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "flex items-center gap-x-3 py-2 px-2.5 bg-gray-700 text-sm text-white rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-600"
+                      : "w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-400 rounded-lg hover:bg-gray-800 hover:text-white-300 focus:outline-none focus:ring-1 focus:ring-gray-600"
+                  }
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "flex items-center gap-x-3 py-2 px-2.5 bg-gray-700 text-sm text-white rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-600"
+                      : "w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-400 rounded-lg hover:bg-gray-800 hover:text-white-300 focus:outline-none focus:ring-1 focus:ring-gray-600"
+                  }
+                >
+                  Register
+                </NavLink>
+              </>
+            }
           </div>
 
           <div className="flex justify-center md:block">

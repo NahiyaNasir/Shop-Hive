@@ -21,8 +21,9 @@ const Register = () => {
   const onSubmit = (data) => {
     // console.log(data);
     createUser(data.email, data.password)
+    // eslint-disable-next-line no-unused-vars
     .then(result=>{
-      console.log(result.user)
+      // console.log(result.user)
       updateUser(data.name, )
      .then(()=>{
       const userInfo={
@@ -33,7 +34,7 @@ const Register = () => {
       }
        axiosCommon.post('/users',userInfo)
        .then(res=>{
-        console.log(res.data)
+        // console.log(res.data)
         if(res.data.insertedId){
           reset()
           Swal.fire({
