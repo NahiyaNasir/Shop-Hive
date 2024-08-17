@@ -13,6 +13,7 @@ import {
   } from "firebase/auth";
 import auth from "../Firebase/FirebaseConfig";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
   const googleProvider = new GoogleAuthProvider();
 export const AuthContext = createContext(null);
 // eslint-disable-next-line react/prop-types

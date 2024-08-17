@@ -3,6 +3,7 @@ import useAxiosCommon from "../hooks/useAxiosCommon";
 import ProductCard from "./ProductCard";
 import { useState } from "react";
 import Pagination from "./Pagination";
+import LoadingSpinner from "../Pages/LoadingSpinner";
 
 const Products = () => {
   const axiosCommon = useAxiosCommon();
@@ -10,10 +11,8 @@ const Products = () => {
   const [bn, setBn] = useState("");
   const [cate, setCate] = useState("");
   const [sort, setSort] = useState("");
-  // const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(0);
 
-  const [currentPage, setCurrentPage] = useState(0);
-  const itemPerPage = 9;
   const { data: allProduct = [], isLoading } = useQuery({
     queryKey: ["allProduct", search, bn, cate],
     queryFn: async () => {
@@ -25,7 +24,7 @@ const Products = () => {
       return resp.data;
     },
   });
-// 
+  //
   const { data: categorization = {} } = useQuery({
     queryKey: ["category"],
     queryFn: async () => {
@@ -36,17 +35,21 @@ const Products = () => {
   });
   const { brandNames = [], categories = [] } = categorization;
   // pagination count
-   const {data={}}=useQuery({
-    queryKey:['count', bn,cate,search],
-   queryFn:async()=>{
-    const response=await  axiosCommon.get(`/count?search=${search}&brandName=${bn}&category=${cate}`)
-    console.log(response.data?.count);
-    return response.data?.count
-   }
-   })
-    const {count}=data
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemPerPage = 9;
+  const { data = {} } = useQuery({
+    queryKey: ["count", bn, cate, search],
+    queryFn: async () => {
+      const response = await axiosCommon.get(
+        `/count?search=${search}&brandName=${bn}&category=${cate}`
+      );
+      console.log(response.data?.count);
+      return response.data?.count;
+    },
+  });
+  const { count } = data;
   console.log(count);
-  if (isLoading) return <p> loading...</p>;
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   // for search
   const handleSearch = (e) => {
@@ -81,13 +84,12 @@ const Products = () => {
             onChange={(e) => setSort(e.target.value)}
             value={sort}
           >
-        
-            <option disabled value=''>
+            <option disabled value="">
               Price
             </option>
-            <option value='Low to High'>Low To High</option>
-            <option value='High to Low'>High To Low</option>
-            <option value='Newest Fast'>
+            <option value="Low to High">Low To High</option>
+            <option value="High to Low">High To Low</option>
+            <option value="Newest Fast">
               <span className="font-bold">Date :</span> NewestFast
             </option>
           </select>
@@ -100,7 +102,7 @@ const Products = () => {
             onChange={(e) => setBn(e.target.value)}
             value={bn}
           >
-            <option disabled value=''>
+            <option disabled value="">
               select a Brand
             </option>
 
@@ -115,7 +117,9 @@ const Products = () => {
             onChange={(e) => setCate(e.target.value)}
             value={cate}
           >
-            <option disabled value=''>select a Category</option>
+            <option disabled value="">
+              select a Category
+            </option>
 
             {categories.map((category, index) => (
               <option key={index}>{category.category}</option>
@@ -139,14 +143,12 @@ const Products = () => {
           <ProductCard key={product._id} product={product}></ProductCard>
         ))}
       </div>
-      <Pagination 
-       currentPage={currentPage}
-       setCurrentPage={setCurrentPage}
-       count={count}
-       itemPerPage={itemPerPage}
-      >
-
-      </Pagination>
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        count={count}
+        itemPerPage={itemPerPage}
+      ></Pagination>
     </div>
   );
 };
