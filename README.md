@@ -19,7 +19,7 @@ Make sure you have the following installed on your system:
 
     ```sh
     git clone https://github.com/NahiyaNasir/jobTask
-    cd product-pulse-client
+    cd jobTask
     ```
 
 2. **Install the dependencies:**
