@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "./AuthProvider";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate,  } from "react-router-dom";
 import LoadingSpinner from "../Pages/LoadingSpinner";
 
 
@@ -9,15 +9,15 @@ import LoadingSpinner from "../Pages/LoadingSpinner";
 const ProtectedRoute = ({children}) => {
     const {  user, loading } = useContext(AuthContext);
     // console.log(user);
-    const location = useLocation();
+   
     // console.log(location.pathname);
     if (loading) {
       return <LoadingSpinner></LoadingSpinner>
     }
-    if (user) {
-      return children;
+    if (!user) {
+      return <Navigate to="/login"></Navigate>;
     }
-    return <Navigate state={location.pathname} to="/login"></Navigate>;
+  return children
 };
 
 export default ProtectedRoute;

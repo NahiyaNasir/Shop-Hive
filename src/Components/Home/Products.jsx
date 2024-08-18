@@ -11,13 +11,13 @@ const Products = () => {
   const [bn, setBn] = useState("");
   const [cate, setCate] = useState("");
   const [sort, setSort] = useState("");
-  const [price, setPrice] = useState(0);
+  // const [price, setPrice] = useState(0);
 
   const { data: allProduct = [], isLoading } = useQuery({
     queryKey: ["allProduct", search, bn, cate],
     queryFn: async () => {
       const resp = await axiosCommon.get(
-        `/products-by-search-filter-sort?search=${search}&brandName=${bn}&category=${cate}&price=${price}&sort=${sort}&page=${currentPage}&size=${itemPerPage}`
+        `/products-by-search-filter-sort?search=${search}&brandName=${bn}&category=${cate}&sort=${sort}&page=${currentPage}&size=${itemPerPage}`
       );
       //   console.log(resp.data);
 
@@ -78,7 +78,7 @@ const Products = () => {
           </div>
         </form>
         {/* sorting */}
-        <div>
+        <div className="sm:mt-4">
           <select
             className="select select-bordered w-full   "
             onChange={(e) => setSort(e.target.value)}
@@ -127,16 +127,8 @@ const Products = () => {
           </select>
         </div>
       </div>
-      {/* <div className="flex items-center gap-2 my-7 mx-17 ">
-        <p className="text-nowrap">Price Range:</p>
-        <input
-          type="range"
-          onChange={(e) => setPrice(e.target.value)}
-          value={price}
-          min={0}
-          max={18000}
-        />
-      </div> */}
+     {/* price range */}
+     
 
       <div className=" grid lg:grid-cols-3 md:grid-cols-2  gap-6 my-5">
         {allProduct.map((product) => (
