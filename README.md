@@ -1,4 +1,4 @@
-## Product Pulse
+##Shop Hive
 
 [Live link](https://my-project-260624.web.app/)
 
