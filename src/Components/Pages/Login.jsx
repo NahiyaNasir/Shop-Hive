@@ -19,6 +19,7 @@ const Login = () => {
         // console.log(email, password);
         signIn(email, password)
         
+          // eslint-disable-next-line no-unused-vars
           .then((result) => {
             // console.log(result.user);
         //    axiosCommon.post("/login",{email:result.user?.email})
@@ -54,7 +55,7 @@ const Login = () => {
       const handleGoogleSignIn = () => {
         signInWithGoogle()
           .then((result) => {
-            console.log(result.user);
+            // console.log(result.user);
             navigate( location?.state?  location.state :'/')
            
             toast.success('user Login Successfully with Google') 

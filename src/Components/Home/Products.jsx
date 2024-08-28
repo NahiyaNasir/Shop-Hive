@@ -35,7 +35,7 @@ const Products = () => {
   });
   const { brandNames = [], categories = [] } = categorization;
   // pagination count
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const itemPerPage = 9;
   const { data = {} } = useQuery({
     queryKey: ["count", bn, cate, search],
@@ -43,12 +43,12 @@ const Products = () => {
       const response = await axiosCommon.get(
         `/count?search=${search}&brandName=${bn}&category=${cate}`
       );
-      console.log(response.data?.count);
+      // console.log(response.data?.count);
       return response.data?.count;
     },
   });
-  const { count } = data;
-  console.log(count);
+  // const { count } = data;
+  // console.log(count);
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
   // for search
@@ -138,7 +138,7 @@ const Products = () => {
       <Pagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        count={count}
+        count={data}
         itemPerPage={itemPerPage}
       ></Pagination>
     </div>

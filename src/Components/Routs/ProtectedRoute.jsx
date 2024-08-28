@@ -8,9 +8,9 @@ import LoadingSpinner from "../Pages/LoadingSpinner";
 // eslint-disable-next-line react/prop-types
 const ProtectedRoute = ({children}) => {
     const {  user, loading } = useContext(AuthContext);
-    // console.log(user);
+    // console.log(user.displayName);
    
-    // console.log(location.pathname);
+  
     if (loading) {
       return <LoadingSpinner></LoadingSpinner>
     }
