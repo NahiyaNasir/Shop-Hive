@@ -8,6 +8,7 @@ import Register from "../Pages/Register";
 
 import Products from "../Home/Products";
 import LayOut from "../LayOut";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
 
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
       children: [
         {
           path: "/",
-          element: <Products></Products>,
+          element:<ProtectedRoute><Products></Products></ProtectedRoute>,
         },
         {
           path: "/login",

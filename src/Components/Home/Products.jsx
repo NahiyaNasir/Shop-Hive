@@ -13,13 +13,13 @@ const Products = () => {
   const [sort, setSort] = useState("");
   // const [price, setPrice] = useState(0);
 
-  const { data: allProduct = [], isLoading } = useQuery({
+  const { data: allProduct = [], isFetching } = useQuery({
     queryKey: ["allProduct", search, bn, cate],
     queryFn: async () => {
       const resp = await axiosCommon.get(
         `/products-by-search-filter-sort?search=${search}&brandName=${bn}&category=${cate}&sort=${sort}&page=${currentPage}&size=${itemPerPage}`
       );
-      //   console.log(resp.data);
+        // console.log(resp.data);
 
       return resp.data;
     },
@@ -35,13 +35,13 @@ const Products = () => {
   });
   const { brandNames = [], categories = [] } = categorization;
   // pagination count
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const itemPerPage = 9;
   const { data = {} } = useQuery({
-    queryKey: ["count", bn, cate, search],
+    queryKey: ["count", bn, cate, search,sort],
     queryFn: async () => {
       const response = await axiosCommon.get(
-        `/count?search=${search}&brandName=${bn}&category=${cate}`
+        `/count?search=${search}&brandName=${bn}&category=${cate}&sort=${sort}`
       );
       // console.log(response.data?.count);
       return response.data?.count;
@@ -49,7 +49,7 @@ const Products = () => {
   });
   // const { count } = data;
   // console.log(count);
-  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
+  if (isFetching) return <LoadingSpinner></LoadingSpinner>;
 
   // for search
   const handleSearch = (e) => {

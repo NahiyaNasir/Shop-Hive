@@ -33,23 +33,8 @@ const AuthProvider= ({ children }) => {
       // console.log("user details", currentUser);
       setUser(currentUser);
 
-    //   if (currentUser) {
-    //     const userinfo = {
-    //       email: currentUser?.email,
-    //     };
-    //    .post("/jwt", userinfo).then((res) => {
-    //             // al
-    //       if (res.data.token) {
-      
-    //         localStorage.setItem("access-token", res.data.token);
-    //         setaLoading(false);
-    //       }
-    //     });
-    //   }else{
-    //     localStorage.removeItem("access-token")
-    //     setaLoading(false);
-    //   }
-    
+
+    setaLoading(false)
     });
     return () => {
       unSubscribe();

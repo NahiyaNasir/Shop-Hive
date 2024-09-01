@@ -1,12 +1,13 @@
 
 import {   IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 // eslint-disable-next-line react/prop-types
-const Pagination = ({ currentPage, setCurrentPage, count = 1, itemPerPage }) => {
+const Pagination = ({ currentPage, setCurrentPage, count=1 , itemPerPage }) => {
     const numberOfPages = Math.ceil(count / itemPerPage);
     
 //     console.log(count);
 // console.log(itemPerPage);
     const pages = [...Array(numberOfPages).keys()];
+    //  console.log(pages);
     return (
         <div>
              <div className="flex items-center justify-between border-t border-gray-200 bg-base-100 px-4 py-3 sm:px-6">
