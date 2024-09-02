@@ -6,7 +6,7 @@ const Footer = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="lg:flex lg:items-center">
                     <a className="flex flex-col items-center">
-                        {/* <img alt="logo" src={"/logo.png"} className="size-9 md:size-[61px]" /> */}
+                        <img alt="logo" src={"/logo.png"} className="size-9 md:size-[61px]" />
                         <p className="flex gap-2 text-lg md:text-3xl font-bold text-white">
                          Shop<span className="text-[#bb84e8]">Hive</span>
                         </p>

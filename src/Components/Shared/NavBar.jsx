@@ -17,14 +17,17 @@ const NavBar = () => {
     <nav className="relative bg-white shadow dark:bg-gray-800">
       <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
         <div className="flex items-center justify-between">
-          <a href="#">
-            {/* <img
-              className="w-auto h-6 sm:h-7"
-              src="https://merakiui.com/images/full-logo.svg"
+         <div className=" flex">
+         <a href="#">
+            <img
+              className=" size-9 sm:h-7"
+              src={'/logo.png'}
               alt="Logo"
-            /> */}
+     
+            />
             <h1 className="font-xl font-bold"> Shop Hive</h1>
           </a>
+         </div>
 
           {/* Mobile menu button */}
           <div className="flex lg:hidden">
